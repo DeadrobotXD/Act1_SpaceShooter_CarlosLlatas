@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class EnemyBlue : MonoBehaviour
+public class EnemyRed : MonoBehaviour
 {
     [SerializeField] float speed = 3f;
     [SerializeField] float leftLimitCoordinate = -3f;
     [SerializeField] float rightScreenLimit = 3f;
+    [SerializeField] float health = 2;
+    private float shootCount = 0;
+
     bool isGoingLeft = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -28,9 +31,14 @@ public class EnemyBlue : MonoBehaviour
     {
         if (collision.collider.CompareTag("PlayerShot"))
         {
-            Destroy(gameObject);
+            shootCount++;
+            if (shootCount == health)
+            {
+                Destroy(gameObject);
+            }
+            
+
             
         }
-       
     }
 }

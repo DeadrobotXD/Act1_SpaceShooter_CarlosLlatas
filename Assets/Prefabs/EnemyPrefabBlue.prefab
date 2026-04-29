@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1456275746326853497}
   - component: {fileID: -8317752139293315040}
   m_Layer: 0
-  m_Name: EnemyPrefab
-  m_TagString: Untagged
+  m_Name: EnemyPrefabBlue
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51d9a93f1094859583154674b0d705c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBLue
-  speed: 1.5
+  speed: 1
   leftLimitCoordinate: -1.2
   rightScreenLimit: 3
 --- !u!58 &1456275746326853497

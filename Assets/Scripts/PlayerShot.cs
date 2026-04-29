@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerShot : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private float speed = 3f;
+    private float speed = 4f;
+    [SerializeField] AudioClip clip;
     Rigidbody2D rb2D;
 
     private void Awake()
@@ -16,12 +17,17 @@ public class PlayerShot : MonoBehaviour
     void Start()
     {
        rb2D.linearVelocity = Vector2.right * speed;
-       Destroy(gameObject, 5f); 
+        AudioSource.PlayClipAtPoint(clip, transform.position);
+        Destroy(gameObject, 5f); 
     }
 
     // Update is called once per frame
      void OnCollisionEnter2D(Collision2D collision)
     {
-         Destroy(gameObject);
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+
+        }
     }
 }

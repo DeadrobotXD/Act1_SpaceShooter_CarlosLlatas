@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
@@ -9,11 +10,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] InputActionReference shot;
     [SerializeField] GameObject prefabShot;
     [SerializeField] Transform shotingPoint;
+    [SerializeField] AudioClip clip;
+
     Rigidbody2D rb2d;
+    Vector2 startPosition;
     
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        startPosition = transform.position;
         move.action.started += OnMove;
         move.action.canceled += OnMove;
         move.action.performed += OnMove;
@@ -44,5 +49,24 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void OnShot(InputAction.CallbackContext obj)
     {
         Instantiate(prefabShot, shotingPoint.position, Quaternion.identity);
+        
+
+    }
+
+
+    // Destruccion de nave al chocar con enemigo, se resetea en su posicion original al ser destruida
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            AudioSource.PlayClipAtPoint(clip, transform.position);
+            ResetShip();
+
+        }
+
+    }
+    internal void ResetShip()
+    {
+        transform.position = startPosition;
     }
 }
