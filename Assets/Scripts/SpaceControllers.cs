@@ -54,7 +54,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
 
-    // Destruccion de nave al chocar con enemigo, se resetea en su posicion original al ser destruida
+    // Destruccion de nave al chocar con enemigo, se resetea su posicion
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Enemy"))
